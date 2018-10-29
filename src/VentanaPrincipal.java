@@ -4,6 +4,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.temporal.JulianFields;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -139,7 +141,24 @@ public class VentanaPrincipal {
 	 * Método que inicializa todos los lísteners que necesita inicialmente el programa
 	 */
 	public void inicializarListeners(){
-		//TODO
+		for (int i = 0; i < botonesJuego.length; i++) {
+			for (int j = 0; j < botonesJuego[i].length; j++) {
+				botonesJuego[i][j].addActionListener(new ActionBoton(this,i,j));				
+			}
+		}
+		botonEmpezar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ventana.remove(panelEmpezar);
+				ventana.remove(panelImagen);
+				ventana.remove(panelJuego);
+				ventana.remove(panelPuntuacion);
+				juego=new ControlJuego();
+				inicializar();
+				refrescarPantalla();
+			}
+		});
 	}
 	
 	
@@ -156,7 +175,12 @@ public class VentanaPrincipal {
 	 * @param j: posición horizontal de la celda.
 	 */
 	public void mostrarNumMinasAlrededor(int i , int j) {
-		//TODO
+		int valor=juego.getMinasAlrededor(i, j);
+		panelesJuego[i][j].removeAll();
+		JLabel etiqueta=new JLabel(Integer.toString(valor));
+		etiqueta.setForeground(correspondenciaColores[valor]);
+		etiqueta.setHorizontalAlignment(SwingConstants.CENTER);
+		panelesJuego[i][j].add(etiqueta);		
 	}
 	
 	
@@ -166,14 +190,24 @@ public class VentanaPrincipal {
 	 * @post : Todos los botones se desactivan excepto el de volver a iniciar el juego.
 	 */
 	public void mostrarFinJuego(boolean porExplosion) {
-		//TODO
+		for (int i = 0; i < botonesJuego.length; i++) {
+				for (int j = 0; j < botonesJuego[i].length; j++) {
+					botonesJuego[i][j].setEnabled(false);					
+				}
+			}
+		if (porExplosion) {
+			JOptionPane.showMessageDialog(ventana, "HAS MUERTO\nPuntuacion: " + juego.getPuntuacion());
+	
+		}else {
+			JOptionPane.showMessageDialog(ventana, "�ENHORABUENA!\nPuntuacion: " + juego.getPuntuacion());
+		}
 	}
 
 	/**
 	 * Método que muestra la puntuación por pantalla.
 	 */
 	public void actualizarPuntuacion() {
-		//TODO
+		pantallaPuntuacion.setText(""+juego.getPuntuacion());
 	}
 	
 	/**
