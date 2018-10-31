@@ -91,7 +91,6 @@ public class ControlJuego {
 				}				
 			}
 		}
-		depurarTablero();
 		return contadorMinas;
 	}
 
@@ -166,5 +165,4 @@ public class ControlJuego {
 	public int getPuntuacion() {
 		return puntuacion;
 	}
-
 }
