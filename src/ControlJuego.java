@@ -74,7 +74,14 @@ public class ControlJuego {
 	 * tener en cuenta que no nos salimos nunca del tablero. Por lo tanto, como
 	 * mucho la i y la j valdr√°n LADO_TABLERO-1. Por lo tanto, como poco la i y la
 	 * j valdr√°n 0.
-	 * 
+	 * Declaramos un contador de minas iniciado a 0
+	 * Utilizamos dos bucles para recorrer el el array del tablero
+	 * ExplicarÈ el primer buble:
+	 * Para que al recorrer y no se salga del tablero, iniciamos las variable 
+	 * con el valor maximo entre 0 y el valor del boton pulsado-1.
+	 * Hacemos que el bucle termine cuando la variable sea menor o igual que el valor
+	 * minimo entre el tamaÒo maximo del tablero-1, y la variable+1
+	 * Si encuentra una mina, aumenta en 1 el contador de minas
 	 * @param i:
 	 *            posici√≥n vertical de la casilla a rellenar
 	 * @param j:
