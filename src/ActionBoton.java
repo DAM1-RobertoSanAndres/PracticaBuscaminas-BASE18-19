@@ -1,7 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.text.html.HTMLEditorKit.Parser;
 
 /**
  * Clase que implementa el listener de los botones del Buscaminas. De alguna
